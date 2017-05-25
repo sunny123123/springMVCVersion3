@@ -1,10 +1,14 @@
 package com.payne.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.payne.service.HelloService;
 import com.payne.util.JSONUtil;
 
 import net.sf.json.JSONObject;
@@ -21,6 +26,11 @@ import net.sf.json.JSONObject;
 @RequestMapping("/hello")
 public class HelloController {
 	 private static final Logger log = Logger.getLogger(HelloController.class);
+	 @Autowired
+	 private HelloService helloService;
+	 public HelloController(){
+		 log.info("HelloController was Loaded");
+	 }
 	 @RequestMapping("p1")
 	   public @ResponseBody String fun1(ModelMap model) {
 		  log.info("p1 mapping is executed");
@@ -39,4 +49,29 @@ public class HelloController {
 	      String str = "{name:\"payne\"}";
 	      return JSONObject.fromObject(params);
 	   }
+	 @RequestMapping(value="p4")
+	 public void fun4(@RequestParam(value="params") String params,HttpServletResponse response,HttpServletRequest request){
+		 System.out.println(helloService.testService(params));
+		 PrintWriter pw = null;
+		 try {
+			pw = new PrintWriter(response.getOutputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		 pw.println("<html><h2>Hello World</h2></html>");
+		 pw.flush();
+	 }
+	 
+	 @RequestMapping(value="p5")
+	 public void fun5(@RequestParam(value="params") String params,HttpServletResponse response,HttpServletRequest request){
+		helloService.testCommonDao();
+		 PrintWriter pw = null;
+		 try {
+			pw = new PrintWriter(response.getOutputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		 pw.println("<html><h2>Hello World</h2></html>");
+		 pw.flush();
+	 }
 }

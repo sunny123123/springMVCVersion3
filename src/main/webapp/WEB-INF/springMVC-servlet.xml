@@ -18,5 +18,7 @@
    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
    
    <context:component-scan base-package="com.payne.controller"/>
-   <mvc:annotation-driven />
+   <context:component-scan base-package="com.payne.service"/>
+   <context:component-scan base-package="com.payne.dao"/>
+  <!--  <mvc:annotation-driven /> -->
 </beans>
