@@ -20,5 +20,6 @@
    <context:component-scan base-package="com.payne.controller"/>
    <context:component-scan base-package="com.payne.service"/>
    <context:component-scan base-package="com.payne.dao"/>
+   <context:component-scan base-package="com.payne.biz"/>
   <!--  <mvc:annotation-driven /> -->
 </beans>

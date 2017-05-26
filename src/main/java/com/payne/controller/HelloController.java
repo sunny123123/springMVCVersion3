@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,8 @@ public class HelloController {
 	 private static final Logger log = Logger.getLogger(HelloController.class);
 	 @Autowired
 	 private HelloService helloService;
+	 @Autowired
+	 ApplicationContext applicationContext;
 	 public HelloController(){
 		 log.info("HelloController was Loaded");
 	 }
@@ -73,5 +76,14 @@ public class HelloController {
 		}
 		 pw.println("<html><h2>Hello World</h2></html>");
 		 pw.flush();
+	 }
+	 /*
+	  * 显示已经加载的Bean
+	  */
+	 @RequestMapping(value="p6")
+	 public void fun6(){
+		 String[] beanNames = applicationContext.getBeanDefinitionNames();
+		 for(String name:beanNames)
+			 System.out.println(name);
 	 }
 }
