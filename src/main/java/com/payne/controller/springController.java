@@ -10,6 +10,7 @@ import com.payne.biz.springBiz;
 @RequestMapping("spring")
 public class springController {
 	private static final Logger log = Logger.getLogger(springController.class);
+
 	@Autowired
 	private springBiz biz ;
     public springController() {
@@ -18,5 +19,9 @@ public class springController {
 	@RequestMapping("getBoards")
 	public void getBoards(){
 		biz.getBoards();
+	}
+	@RequestMapping("insertTopic")
+	public void insertTopic(){
+		biz.insertTopic();
 	}
 }

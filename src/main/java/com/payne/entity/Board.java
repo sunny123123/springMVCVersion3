@@ -82,4 +82,10 @@ public class Board implements java.io.Serializable {
 		this.topics = topics;
 	}
 
+	@Override
+	public String toString() {
+		return "Board [boardId=" + boardId + ", boardName=" + boardName + ", parentId=" + parentId + ", topics="
+				+ topics + "]";
+	}
+	
 }

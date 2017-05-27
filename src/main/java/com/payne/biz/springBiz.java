@@ -12,4 +12,7 @@ public class springBiz {
 	public void getBoards(){
 		boardService.getBoardsWithTopics();
 	}
+	public void insertTopic(){
+		boardService.insertTopic();
+	}
 }

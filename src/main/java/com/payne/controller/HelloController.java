@@ -30,6 +30,8 @@ public class HelloController {
 	 @Autowired
 	 private HelloService helloService;
 	 @Autowired
+	 private HelloService helloService1;
+	 @Autowired
 	 ApplicationContext applicationContext;
 	 public HelloController(){
 		 log.info("HelloController was Loaded");
@@ -76,6 +78,7 @@ public class HelloController {
 		}
 		 pw.println("<html><h2>Hello World</h2></html>");
 		 pw.flush();
+		
 	 }
 	 /*
 	  * 显示已经加载的Bean
@@ -85,5 +88,13 @@ public class HelloController {
 		 String[] beanNames = applicationContext.getBeanDefinitionNames();
 		 for(String name:beanNames)
 			 System.out.println(name);
+	 }
+	 
+	 @RequestMapping(value="p7")
+	 public void fun7(){
+		helloService.setTestString("hello1");
+		System.out.println(helloService.getTestString());
+		helloService1.setTestString("hello2");
+		System.out.println(helloService.getTestString());
 	 }
 }
