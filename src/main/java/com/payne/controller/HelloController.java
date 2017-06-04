@@ -70,6 +70,7 @@ public class HelloController {
 	 @RequestMapping(value="p5")
 	 public void fun5(@RequestParam(value="params") String params,HttpServletResponse response,HttpServletRequest request){
 		helloService.testCommonDao();
+		request.getParameter("ok");
 		 PrintWriter pw = null;
 		 try {
 			pw = new PrintWriter(response.getOutputStream());
